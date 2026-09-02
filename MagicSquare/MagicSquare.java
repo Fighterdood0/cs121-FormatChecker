@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  * 
  * 
@@ -6,17 +11,39 @@
  * @date 9/2/26
 */
 
-public class MagicSquares implements MagicSquareInterface {
+public class MagicSquare implements MagicSquareInterface {
 
     private int[][] matrix; //The standard required 2d int array for the assignment
     private boolean isMagic; //I was told an optional boolean could be used, and so I shall use it.
 
-    public MagicSquares(){
+    public MagicSquare(String filename) throws FileNotFoundException{
+        try{Scanner scnr = new Scanner(File filename);
+            int n = scnr.nextInt(filename);
+        }catch(FileNotFoundException e){
+            System.out.println("The file cannot be found.");
+        }
 
     }
 
+    private int[][] readMatrix(String filename) throws FileNotFoundException{
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'readMatrix'");
+    }
+
+    public MagicSquare(String filename, int dimension) throws IOException{
+
+    }
+
+    private void writeMatrix(int[][] matrix, String filename) throws IOException{
+
+    }
+
+        
+
+    
+
     @Override
-    public boolean isMagicSquare() {
+    public boolean isMagicSquare() {//checks the Matrix and return true or false.
 
         if (true) {
             isMagic = true;
@@ -24,8 +51,7 @@ public class MagicSquares implements MagicSquareInterface {
             isMagic = false;
         }
 
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isMagicSquare'");
+        return isMagic;
     }
 
     @Override
