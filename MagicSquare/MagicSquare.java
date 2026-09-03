@@ -57,21 +57,29 @@ public class MagicSquare implements MagicSquareInterface {
     @Override
     public int[][] getMatrix() {
         
-        System.out.println("The matrix");
-        for (int i = 0; i < matrix.length; i++){
-            for(int j = 0; j< matrix[i].length; j++){
-                System.out.print(matrix[i][j] + " ");
-            }
-            System.out.println();
-        }
-        if(isMagic){
-            System.out.println("is a magic square.");
-        }else{
-            System.out.println("is not a magic square.");
-        }
+        
 
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getMatrix'");
+    }
+
+    public String toString(){
+        String matrixString = "";
+
+        matrixString = matrixString + "The matrix \n";
+        for (int i = 0; i < matrix.length; i++){
+            for(int j = 0; j< matrix[i].length; j++){
+                matrixString = matrixString + (matrix[i][j] + " ");
+            }
+            matrixString = matrixString + "\n";
+        }
+        if(isMagic){
+            matrixString = matrixString + ("is a magic square.");
+        }else{
+            matrixString = matrixString + ("is not a magic square.");
+        }
+
+        return matrixString;
     }
 
 
