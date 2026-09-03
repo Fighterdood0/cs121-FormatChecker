@@ -51,14 +51,25 @@ public class MagicSquare implements MagicSquareInterface {
     public MagicSquare(String filename) throws FileNotFoundException{ //first constructor, does not create a file
         File file = new File(filename);//finds the file if it exists
         Scanner scnr = new Scanner(file);//scanner to parse file
-            int n = scnr.nextInt();
-            for (int i = 0; i < n; i++){
-                for (int j = 0; j < n; j++){
+            int dimension = scnr.nextInt();
+            int magicNumber = dimension * (dimension * dimension + 1) / 2;//( n(n2 + 1) / 2 )
+            int sum = 0;
+            for (int i = 0; i < dimension; i++){//nested for loops to populate the matrix
+                for (int j = 0; j < dimension; j++){
                     matrix[i][j] = scnr.nextInt();
+                    sum = sum + matrix[i][j];
                 }
             }
 
-        scnr.close();
+            if(sum == magicNumber){
+                isMagic = true;
+            }else{
+                isMagic = false;
+            }
+
+            readMatrix(filename);
+
+        scnr.close();//Always gotta close the scanner
 
     }
 
@@ -68,7 +79,20 @@ public class MagicSquare implements MagicSquareInterface {
     }
 
     public MagicSquare(String filename, int dimension) throws IOException{ //second constructor, will create a file
-        
+
+            writeMatrix(matrix, filename);
+            int sum = 0;
+            int magicNumber = dimension * (dimension * dimension + 1) / 2;//( n(n2 + 1) / 2 )
+             for (int i = 0; i < dimension; i++){//loops to add up the matrix
+                for (int j = 0; j < dimension; j++){
+                    sum = sum + matrix[i][j];
+                }
+            }
+            if(sum == magicNumber){
+                isMagic = true;
+            }else{
+                isMagic = false;
+            }
     }
 
     private void writeMatrix(int[][] matrix, String filename) throws IOException{ //writes the matrix
@@ -76,7 +100,7 @@ public class MagicSquare implements MagicSquareInterface {
         PrintWriter outFile = new PrintWriter(file);
 
 
-        outFile.close();
+        outFile.close();//Always gotta close the printwriter
     }
 
         
@@ -85,23 +109,15 @@ public class MagicSquare implements MagicSquareInterface {
 
     @Override
     public boolean isMagicSquare() {//returns if the matrix is a magic square
-
-        if (isMagic) {//very redundant, this is a placehodler
-            isMagic = true;
-        }else{
-            isMagic = false;
-        }
-
         return isMagic;
     }
 
     @Override
     public int[][] getMatrix() {//returns matrix
-
         return matrix;
     }
 
-    public String toString(){
+    public String toString(){ //toString method as described in the project
         String matrixString = "";
 
         matrixString = matrixString + "The matrix \n";
