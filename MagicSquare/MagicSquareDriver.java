@@ -9,6 +9,7 @@ import java.io.IOException;
 public class MagicSquareDriver {
 
     public static void main(String args[]) throws IOException{
+        System.out.println(args.length); //for debugging
          if (args.length != 3 || args.length != 2) { //correct number of expected args?
             printUsage();
             return;
