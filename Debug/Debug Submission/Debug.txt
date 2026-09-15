@@ -1,0 +1,18 @@
+Zach Jessup CS 221
+I place a breakpoint at the isEmpty test, thinking this is the problem.
+I think the problem is that the isEmpty is looking for >0 when it should be = 0?
+Changed the isEmpty method to reutrn (rear == 0)
+It appears to have fixed the first error
+Moving along to when it Adds A
+I think the problem is once again the rear. theres a loop where i<rear, but if rear = 0 it will never run
+Changed the contains method to use i <= rear
+I realize my mistake, when rear is 0 there is no need to check obviously, because rear will be 0 only when the set is empty.
+Reverted previous change.
+I think the issue is that the element is not actually being added, or rear is not being incremented
+First I added rear ++ to the add metod.
+That seems to have worked!
+I step through the program until I found the next error which I believe is in the test A Add B AB Remove A thing.
+The call stack thing says it is an index out of bounds, so that is what I will look for.
+In the remove element method, there is an array index out of bounds exception in a while loop.
+to fix this, I will try i< rear-1
+It worked! And with that, the tester says 0 failed tasks.

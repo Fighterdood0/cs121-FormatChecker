@@ -1,5 +1,8 @@
 import java.io.FileNotFoundException;
 
+import MagicSquareSubmission.MagicSquare;
+import MagicSquareSubmission.MagicSquareInterface;
+
 /**
  * Console app to test MagicSquare class
  * @author mvail
