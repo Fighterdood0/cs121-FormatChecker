@@ -11,7 +11,6 @@ public class MethodsToAnalyze {
 	 * @param value int that may be in array
 	 * @return index where value is found or -1 if not found
 	 */
-	// O(n) = 1 + 2n
 	public static int find(int[] array, int value) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] == value) {
