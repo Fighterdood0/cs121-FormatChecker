@@ -216,6 +216,37 @@ public class ListTester {
 	}
 	private Scenario<Integer> emptyList_addToFrontA_A = () -> emptyList_addToFrontA_A();
 
+		/** Scenario: empty list -> addToRear(A) -> [A] 
+	 * @return [A] after addToFront(A)
+	 */
+	private IndexedUnsortedList<Integer> emptyList_addToRearA_A() {
+		IndexedUnsortedList<Integer> list = newList(); 
+		list.addToRear(ELEMENT_A);
+		return list;
+	}
+	private Scenario<Integer> emptyList_addToRearA_A = () -> emptyList_addToRearA_A();
+
+		/** Scenario: empty list -> add(A) -> [A] 
+	 * @return [A] after addToFront(A)
+	 */
+	private IndexedUnsortedList<Integer> emptyList_addA_A() {
+		IndexedUnsortedList<Integer> list = newList(); 
+		list.add(ELEMENT_A);
+		return list;
+	}
+	private Scenario<Integer> emptyList_addA_A = () -> emptyList_addA_A();
+
+	/** Scenario: [A] -> remove(A) -> [] 
+	 * @return [] after remove(A)
+	 */
+	private IndexedUnsortedList<Integer> A_removeA_emptyList() {
+		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
+		list.remove(ELEMENT_A);
+		return list;
+	}
+	private Scenario<Integer> A_removeA_emptyList = () -> A_removeA_emptyList();
+
+
 	/** Scenario: [A] -> addToFront(B) -> [B,A] 
 	 * @return [B,A] after addToFront(B)
 	 */
@@ -225,6 +256,46 @@ public class ListTester {
 		return list;
 	}
 	private Scenario<Integer> A_addToFrontB_BA = () -> A_addToFrontB_BA();
+
+	/** Scenario: [A] -> addToRear(B) -> [A,B] 
+	 * @return [A,B] after addToRear(B)
+	 */
+	private IndexedUnsortedList<Integer> A_addToRearB_AB() {
+		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
+		list.addToRear(ELEMENT_B);
+		return list;
+	}
+	private Scenario<Integer> A_addToRearB_AB = () -> A_addToRearB_AB();
+
+	/** Scenario: [A] -> addToRear(B) -> [A,B] 
+	 * @return [A,B] after addAfter(B,A)
+	 */
+	private IndexedUnsortedList<Integer> A_addAfterBA_AB() {
+		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
+		list.addAfter(ELEMENT_B,ELEMENT_A);
+		return list;
+	}
+	private Scenario<Integer> A_addAfterBA_AB = () -> A_addAfterBA_AB();
+
+	/** Scenario: [A,B] -> remove(B) -> [A] 
+	 * @return [A] after remove(B)
+	 */
+	private IndexedUnsortedList<Integer> AB_removeB_A() {
+		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
+		list.remove(ELEMENT_B);
+		return list;
+	}
+	private Scenario<Integer> AB_removeB_A = () -> AB_removeB_A();
+
+	/** Scenario: [A,B] -> addToRear(C) -> [A,B,C] 
+	 * @return [A,B,C] after addToRear(C)
+	 */
+	private IndexedUnsortedList<Integer> AB_addToRearC_ABC() {
+		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
+		list.addToRear(ELEMENT_C);
+		return list;
+	}
+	private Scenario<Integer> AB_addToRearC_ABC = () -> AB_addToRearC_ABC();
 
 	/////////////////////////////////
 	//XXX Tests for 0-element list
