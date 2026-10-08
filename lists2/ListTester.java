@@ -141,12 +141,17 @@ public class ListTester {
 		String STRING_A = "A";
 		Integer[] LIST_BA = {ELEMENT_B, ELEMENT_A};
 		String STRING_BA = "BA";
+		Integer[] LIST_AB = {ELEMENT_A, ELEMENT_B};
+		String STRING_AB = "AB";
+		Integer[] LIST_ABC = {ELEMENT_A, ELEMENT_B, ELEMENT_C};
+		String STRING_ABC = "ABC";
 
 		//newly constructed empty list
 		testEmptyList(newList, "newList");
 		//empty to 1-element list
 		testSingleElementList(emptyList_addToFrontA_A, "emptyList_addToFrontA_A", LIST_A, STRING_A);
 		//1-element to empty list
+		testEmptyList(A_removeA_emptyList,"A_removeA_emptyList");
 		//1-element to 2-element
 		testTwoElementList(A_addToFrontB_BA, "A_addToFrontB_BA", LIST_BA, STRING_BA);
 		//1-element to changed 1-element via set()
@@ -168,6 +173,7 @@ public class ListTester {
 	//////////////////////////////////////
 	// XXX SCENARIO BUILDERS
 	//////////////////////////////////////
+    //7 scenarios done
 
 	/**
 	 * Returns a IndexedUnsortedList for the "new empty list" scenario.
