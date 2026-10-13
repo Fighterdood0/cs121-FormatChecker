@@ -37,26 +37,38 @@ public class IUArrayList<T> implements IndexedUnsortedList<T> {
 	}
 	
 	/** Double the capacity of array */
-	private void expandCapacity() {
+	private void expandCapacity() { //thank you for this
 		array = Arrays.copyOf(array, array.length*2);
 	}
 
 	@Override
 	public void addToFront(T element) {
 		// TODO 
-		
+		if(rear >= array.length){ //if full
+			expandCapacity();
+		}
+		for(int i = rear; i>0; i--){
+			array[i] = array[i-1];
+		}
+		array[0] = element;
+		rear++;
 	}
 
 	@Override
 	public void addToRear(T element) {
 		// TODO 
+		if(rear >= array.length){ //if full
+			expandCapacity();
+		}
+		array[rear] = element;
+		rear++;
 		
 	}
 
 	@Override
 	public void add(T element) {
 		// TODO 
-		
+		addToRear(element);
 	}
 
 	@Override
@@ -104,43 +116,71 @@ public class IUArrayList<T> implements IndexedUnsortedList<T> {
 	@Override
 	public T get(int index) {
 		// TODO 
-		return null;
+		if(index<0 || index>= rear){
+			throw new IndexOutOfBoundsException();
+		}
+		return array[index];
 	}
 
 	@Override
 	public int indexOf(T element) {
 		// TODO
-		return NOT_FOUND;
+		int index = -1;
+		int i = 0;
+		while(i < rear && index<0){
+		if(array[i].equals(element)){
+			index = i;
+		}
+		i++;
+	}
+		return index;	
 	}
 
 	@Override
 	public T first() {
 		// TODO 
-		return null;
+		if(isEmpty()){
+		throw new NoSuchElementException();
+		}
+		return array[0];
+		
 	}
 
 	@Override
 	public T last() {
 		// TODO 
-		return null;
+		if(isEmpty()){
+		throw new NoSuchElementException();
+		}
+		return array[rear-1];
 	}
 
 	@Override
 	public boolean contains(T target) {
 		// TODO
-		return false;
+		boolean c = false;
+		if(!isEmpty()){
+			int i = 0;
+			while(i<rear && c ==false){
+				if(array[i].equals(target)){
+					c = true;
+				}
+				i++;
+			}
+		}
+		return c;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO 
-		return false;
+		
+		return rear==0;
 	}
 
 	@Override
 	public int size() {
 		// TODO 
-		return -1;
+		return rear;
 	}
 
 	@Override
