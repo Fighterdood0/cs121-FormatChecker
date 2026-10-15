@@ -19,7 +19,7 @@ public class ListTester {
 	private static enum ListToUse {
 		goodList, badList, arrayList, singleLinkedList, doubleLinkedList
 	};
-	// TODO: THIS IS WHERE YOU CHOOSE WHICH LIST TO TEST
+	// XXX THIS IS WHERE YOU CHOOSE WHICH LIST TO TEST
 	private final static ListToUse LIST_TO_USE = ListToUse.arrayList;
 
 	// possible results expected in tests
