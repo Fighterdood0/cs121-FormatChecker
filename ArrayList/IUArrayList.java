@@ -70,44 +70,86 @@ public class IUArrayList<T> implements IndexedUnsortedList<T> {
 
 	@Override
 	public void addAfter(T element, T target) {
-		// TODO 
-		
+		try{ 
+		expandCapacity();
+		int newIndex = indexOf(target);
+		for(int i = rear; i>newIndex+2; i--){
+			array[i] = array[i-1];
+		}
+		array[newIndex+1] = element;
+		rear++;
+		modCount++;
+	}catch (NoSuchElementException e){
+		throw e;
+	}
 	}
 
 	@Override
 	public void add(int index, T element) {
-		// TODO 
-		
+		try{
+		T newElement = get(index);
+		addAfter(element, newElement);
+		}catch(IndexOutOfBoundsException e){
+			throw e;
+		}
 	}
 
 	@Override
 	public T removeFirst() {
-		// TODO 
-		return null;
+		if(isEmpty()){
+		throw new NoSuchElementException();
+		} 
+		T removedElement = array[0];
+		for(int i = 0; i<rear-1; i++){
+			array[i] = array[i+1];
+		}
+		array[rear-1] = null;
+		rear--;
+		modCount++;
+		return removedElement;
 	}
 
 	@Override
 	public T removeLast() {
-		// TODO 
-		return null;
+		if(isEmpty()){
+		throw new NoSuchElementException();
+		}
+		T removedElement = array[rear-1]; 
+		array[rear-1] = null;
+		return removedElement;
 	}
 
 	@Override
 	public T remove(T element) {
-		// TODO
-		return null;
+		if(isEmpty()){
+		throw new NoSuchElementException();
+		}
+		try{
+		int removedIndex = indexOf(element);
+		T removedElement = array[removedIndex];
+		for(int i = removedIndex; i<rear-1; i++){
+			array[i] = array[i+1];
+		}
+		array[rear-1] = null;
+		rear--;
+		modCount++;
+		return removedElement;
+	}catch(NoSuchElementException e){
+		throw e;
+	}
 	}
 
 	@Override
 	public T remove(int index) {
-		// TODO 
-		return null;
+		T removedElement = get(index);
+		removedElement = remove(removedElement); 
+		return removedElement;
 	}
 
 	@Override
-	public void set(int index, T element) {
-		// TODO 
-		
+	public void set(int index, T element) { 
+		array[index] = element;
+		modCount++;
 	}
 
 	@Override
