@@ -141,9 +141,13 @@ public class IUArrayList<T> implements IndexedUnsortedList<T> {
 
 	@Override
 	public T remove(int index) {
+		try{
 		T removedElement = get(index);
 		removedElement = remove(removedElement); 
 		return removedElement;
+		}catch (IndexOutOfBoundsException e) {
+			throw e;
+		}
 	}
 
 	@Override
