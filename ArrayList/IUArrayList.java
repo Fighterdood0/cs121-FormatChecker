@@ -70,7 +70,9 @@ public class IUArrayList<T> implements IndexedUnsortedList<T> {
 
 	@Override
 	public void addAfter(T element, T target) {
-		try{ 
+		if(isEmpty()){
+		throw new NoSuchElementException();
+		} 
 		expandCapacity();
 		int newIndex = indexOf(target);
 		for(int i = rear; i>newIndex+2; i--){
@@ -79,19 +81,12 @@ public class IUArrayList<T> implements IndexedUnsortedList<T> {
 		array[newIndex+1] = element;
 		rear++;
 		modCount++;
-	}catch (NoSuchElementException e){
-		throw e;
-	}
 	}
 
 	@Override
 	public void add(int index, T element) {
-		try{
 		T newElement = get(index);
 		addAfter(element, newElement);
-		}catch(IndexOutOfBoundsException e){
-			throw e;
-		}
 	}
 
 	@Override
@@ -124,7 +119,6 @@ public class IUArrayList<T> implements IndexedUnsortedList<T> {
 		if(isEmpty()){
 		throw new NoSuchElementException();
 		}
-		try{
 		int removedIndex = indexOf(element);
 		T removedElement = array[removedIndex];
 		for(int i = removedIndex; i<rear-1; i++){
@@ -134,20 +128,13 @@ public class IUArrayList<T> implements IndexedUnsortedList<T> {
 		rear--;
 		modCount++;
 		return removedElement;
-	}catch(NoSuchElementException e){
-		throw e;
-	}
 	}
 
 	@Override
 	public T remove(int index) {
-		try{
 		T removedElement = get(index);
 		removedElement = remove(removedElement); 
 		return removedElement;
-		}catch (IndexOutOfBoundsException e) {
-			throw e;
-		}
 	}
 
 	@Override
