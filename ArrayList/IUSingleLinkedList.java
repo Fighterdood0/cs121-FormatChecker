@@ -1,5 +1,6 @@
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 /**
 
@@ -80,26 +81,43 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
 
     @Override
     public T get(int index) {
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'get'");
     }
 
     @Override
     public int indexOf(T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'indexOf'");
+        int currentIndex = 0;
+        int returnIndex = -1;
+        Node<T> currentNode = head;
+        while(currentNode != null && returnIndex < 0){
+            if(!currentNode.getElement().equals(element)){
+            returnIndex = currentIndex;
+            }else{
+            currentNode = currentNode.getNextNode();
+            currentIndex++;
+            }
+        }
+        return returnIndex;
     }
 
     @Override
     public T first() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'first'");
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return head.getElement();
     }
 
     @Override
     public T last() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'last'");
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return tail.getElement();
     }
 
     @Override
