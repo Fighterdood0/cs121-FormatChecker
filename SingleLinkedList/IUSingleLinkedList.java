@@ -21,26 +21,52 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
 
     @Override
     public void addToFront(T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addToFront'");
+        Node<T> newNode = new Node<T>(element);
+        newNode.setNextNode(head);
+        head = newNode;
+        if(tail == null){
+            tail = newNode;
+        }
+        size++;
     }
 
     @Override
     public void addToRear(T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addToRear'");
+        Node<T> newNode = new Node<T>(element);
+        if(!isEmpty()){
+        tail.setNextNode(newNode);
+        }else{
+            head = newNode;
+        }
+        tail = newNode;
+        size++;
     }
 
     @Override
     public void add(T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        addToRear(element);
     }
 
     @Override
     public void addAfter(T element, T target) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addAfter'");
+        Node<T> newNode = new Node<T>(element);//create New Node
+        Node<T> targetNode = head;
+        //find the correct node
+        while(targetNode != null && !targetNode.getElement().equals(target)){
+            targetNode = targetNode.getNextNode();
+        }
+        if(targetNode == null){
+            throw new NoSuchElementException();
+        }
+
+        //tail edgecase
+        if(tail == targetNode){
+            tail = newNode;
+        }
+        //finalize
+        newNode.setNextNode(targetNode.getNextNode());
+        targetNode.setNextNode(newNode);
+        size++;
     }
 
     @Override
@@ -51,14 +77,21 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
 
     @Override
     public T removeFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFirst'");
+        T removedElement = head.getElement();
+        head = head.getNextNode();
+        return removedElement;
     }
 
     @Override
     public T removeLast() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeLast'");
+        T removedElement = tail.getElement();
+        Node<T> searchNode = head;
+        while(!searchNode.getNextNode().equals(tail)){
+            searchNode = searchNode.getNextNode();
+        }
+        tail = searchNode;
+        return removedElement;
     }
 
     @Override
@@ -122,8 +155,11 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
 
     @Override
     public boolean contains(T target) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'contains'");
+        boolean contained = false;
+        if(indexOf(target) != -1){
+            contained = true;
+        }
+        return contained;
     }
 
     @Override
