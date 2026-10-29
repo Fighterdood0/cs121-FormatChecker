@@ -220,9 +220,17 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
     @Override
     public String toString() {
         // TODO toString method
-        String returnString = "";
-
-        return returnString;
+        StringBuilder str = new StringBuilder();
+		str.append("[");
+		for (T element : this){
+			str.append(element);
+			str.append(", ");
+		}
+		if(!isEmpty()){
+			str.delete(str.length()-2,str.length());
+		}
+		str.append("]");
+		return str.toString();
     }
 
     @Override

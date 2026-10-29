@@ -148,31 +148,53 @@ public class ListTester {
 		String STRING_AB = "AB";
 		Integer[] LIST_AC = {ELEMENT_A, ELEMENT_C};
 		String STRING_AC = "AC";
+		Integer[] LIST_BC = {ELEMENT_B, ELEMENT_C};
+		String STRING_BC = "BC";
 		Integer[] LIST_ABC = {ELEMENT_A, ELEMENT_B, ELEMENT_C};
 		String STRING_ABC = "ABC";
 		Integer[] LIST_ABD = {ELEMENT_A, ELEMENT_B, ELEMENT_D};
 		String STRING_ABD = "ABD";
+		Integer[] LIST_ADC = {ELEMENT_A, ELEMENT_D, ELEMENT_C};
+		String STRING_ADC = "ADC";
+		Integer[] LIST_DBC = {ELEMENT_D, ELEMENT_C, ELEMENT_C};
+		String STRING_DBC = "DBC";
 
 		//newly constructed empty list
 		testEmptyList(newList, "newList");
-		//empty to 1-element list
+		//empty to 1-element list via addToFront
 		testSingleElementList(emptyList_addToFrontA_A, "emptyList_addToFrontA_A", LIST_A, STRING_A);
-		//1-element to empty list
+		//1-element to empty list via removeElement
 		testEmptyList(A_removeA_emptyList,"A_removeA_emptyList");
-		//1-element to 2-element
+		//1-element to empty list via iterRemove
+		testEmptyList(A_iterRemoveA_emptyList,"A_iterRemoveA_emptyList");
+		//1-element to 2-element via addToFront
 		testTwoElementList(A_addToFrontB_BA, "A_addToFrontB_BA", LIST_BA, STRING_BA);
 		//1-element to changed 1-element via set()
 		testSingleElementList(A_set0B_B, "A_set0B_B", LIST_B, STRING_B);
-		//2-element to 1-element
+		//2-element to 1-element via removeElement
 		testSingleElementList(AB_removeB_A, "AB_removeB_A", LIST_A, STRING_A);
-		//2-element to 3-element
+		//2-element to 1-element via iterRemove
+		testSingleElementList(AB_iterRemoveB_A, "AB_iterRemoveB_A", LIST_A, STRING_A);
+		//2-element to 1-element via iterRemove
+		testSingleElementList(AB_iterRemoveA_B, "AB_iterRemoveA_B", LIST_B, STRING_B);
+		//2-element to 3-element via addToRear
 		testThreeElementList(AB_addToRearC_ABC, "AB_addToRearC_ABC", LIST_ABC, STRING_ABC);
 		//2-element to changed 2-element via set()
 		testTwoElementList(AB_set1C_AC, "AB_set1C_AC", LIST_AC, STRING_AC);
-		//3-element to 2-element
+		//3-element to 2-element via removeElement
 		testTwoElementList(ABC_removeC_AB, "ABC_removeC_AB", LIST_AB, STRING_AB);
+		//3-element to 2-element via removeLast
+		testTwoElementList(ABC_removeLast_AB, "ABC_removeLast_AB", LIST_AB, STRING_AB);
+		//3-element to 2-element via removeLast
+		testTwoElementList(ABC_removeFirst_BC, "ABC_removeFirst_BC", LIST_BC, STRING_BC);
+		//3-element to 2-element via iterRemove
+		testTwoElementList(ABC_iterRemoveB_AC, "ABC_iterRemoveB_AC", LIST_AC, STRING_AC);
 		//3-element to changed 3-element via set()
 		testThreeElementList(ABC_set2D_ABD, "ABC_set2D_ABD", LIST_ABD, STRING_ABD);
+		//3-element to changed 3-element via set()
+		testThreeElementList(ABC_set1D_ADC, "ABC_set1D_ADC", LIST_ADC, STRING_ADC);
+		//3-element to changed 3-element via set()
+		testThreeElementList(ABC_set0D_DBC, "ABC_set0D_DBC", LIST_DBC, STRING_DBC);
 		//Iterator concurrency tests
 		test_IterConcurrency();
 		if (SUPPORTS_LIST_ITERATOR) {
