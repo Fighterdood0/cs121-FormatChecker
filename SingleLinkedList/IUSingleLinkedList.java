@@ -75,9 +75,29 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
     }
 
     @Override
-    public void add(int index, T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+    public void add(int index, T element) {//TODO
+        if(index<0 || index>size){
+            throw new IndexOutOfBoundsException();
+        }
+        Node<T> newNode = new Node<T>(element);//create New Node
+        Node<T> searchNode = head;
+        if(index == 0){
+            head = newNode;
+            if(tail == null){
+                tail = newNode;
+            }
+        }else{
+        for(int i = 0; i<index-1; i++){
+            searchNode = searchNode.getNextNode();
+        }
+        newNode.setNextNode(searchNode.getNextNode());
+        searchNode.setNextNode(newNode);
+        if(newNode.getNextNode() == null){
+            tail = newNode;
+        }
+        }
+        size++;
+        modCount++;
     }
 
     @Override
@@ -148,6 +168,9 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
         if(index == 0){
             removedElement = head.getElement();
             head = head.getNextNode();
+            if(head == null){
+                tail = null;
+            }
         }else{
         Node<T> node = head;
         for(int i = 0; i<index; i++){
@@ -159,6 +182,8 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
             tail = node;
         }
         }
+        size--;
+        modCount++;
         return removedElement;
     }
 
@@ -171,6 +196,7 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
         for(int i = 0; i<index; i++){
             node = node.getNextNode();
         }
+        modCount++;
         node.setElement(element);
     }
 
@@ -222,11 +248,7 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
 
     @Override
     public boolean contains(T target) {
-        boolean contained = false;
-        if(indexOf(target) != -1){
-            contained = true;
-        }
-        return contained;
+        return indexOf(target)>-1;
     }
 
     @Override
