@@ -110,7 +110,6 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
 
     @Override
     public T remove(T element) {
-        // TODO Auto-generated method stub
         if(isEmpty()){
             throw new NoSuchElementException();
         }
@@ -142,14 +141,37 @@ public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {
 
     @Override
     public T remove(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
+        T removedElement = null;
+        if(index == 0){
+            removedElement = head.getElement();
+            head = head.getNextNode();
+        }else{
+        Node<T> node = head;
+        for(int i = 0; i<index; i++){
+            node = node.getNextNode();
+        }
+        removedElement = node.getNextNode().getElement();
+        node.setNextNode(node.getNextNode().getNextNode());
+        if(node.getNextNode() == null){
+            tail = node;
+        }
+        }
+        return removedElement;
     }
 
     @Override
     public void set(int index, T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'set'");
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
+        Node<T> node = head;
+        for(int i = 0; i<index; i++){
+            node = node.getNextNode();
+        }
+        node.setElement(element);
     }
 
     @Override
