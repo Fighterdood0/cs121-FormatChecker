@@ -20,7 +20,6 @@ public class ListTester {
 		goodList, badList, arrayList, singleLinkedList, doubleLinkedList
 	};
 	// XXX THIS IS WHERE YOU CHOOSE WHICH LIST TO TEST
-	// IT DOESN'T WANT TO WORK THOUGH I AM CONFUSED
 	private final static ListToUse LIST_TO_USE = ListToUse.singleLinkedList;
 
 	// possible results expected in tests
@@ -167,12 +166,20 @@ public class ListTester {
 		testEmptyList(newList, "newList");
 		//empty to 1-element list via addToFront
 		testSingleElementList(emptyList_addToFrontA_A, "emptyList_addToFrontA_A", LIST_A, STRING_A);
+		//empty to 1-element list via addToRear
+		testSingleElementList(emptyList_addToRearA_A, "emptyList_addToRearA_A", LIST_A, STRING_A);
+		//empty to 1-element list via add
+		testSingleElementList(emptyList_addA_A, "emptyList_addA_A", LIST_A, STRING_A);
 		//1-element to empty list via removeElement
 		testEmptyList(A_removeA_emptyList,"A_removeA_emptyList");
 		//1-element to empty list via iterRemove
 		testEmptyList(A_iterRemoveA_emptyList,"A_iterRemoveA_emptyList");
 		//1-element to 2-element via addToFront
 		testTwoElementList(A_addToFrontB_BA, "A_addToFrontB_BA", LIST_BA, STRING_BA);
+		//1-element to 2-element via addToRear
+		testTwoElementList(A_addToRearB_AB, "A_addTorearB_AB", LIST_AB, STRING_AB);
+		//1-element to 2-element via addAfter
+		testTwoElementList(A_addAfterBA_AB, "A_addAfterBA_AB", LIST_AB, STRING_AB);
 		//1-element to changed 1-element via set()
 		testSingleElementList(A_set0B_B, "A_set0B_B", LIST_B, STRING_B);
 		//2-element to 1-element via removeElement
@@ -197,6 +204,10 @@ public class ListTester {
 		testTwoElementList(ABC_removeFirst_BC, "ABC_removeFirst_BC", LIST_BC, STRING_BC);
 		//3-element to 2-element via iterRemove
 		testTwoElementList(ABC_iterRemoveB_AC, "ABC_iterRemoveB_AC", LIST_AC, STRING_AC);
+		//3-element to 2-element via removeIndex
+		testTwoElementList(ABC_remove2_AB, "ABC_remove2_AB", LIST_AB, STRING_AB);
+		testTwoElementList(ABC_remove1_AC, "ABC_remove1_AC", LIST_AC, STRING_AC);
+		testTwoElementList(ABC_remove0_BC, "ABC_remove0_BC", LIST_BC, STRING_BC);
 		//3-element to changed 3-element via set()
 		testThreeElementList(ABC_set2D_ABD, "ABC_set2D_ABD", LIST_ABD, STRING_ABD);
 		//3-element to changed 3-element via set()
