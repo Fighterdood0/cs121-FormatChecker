@@ -4,10 +4,10 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 /**
+Create a list that does not use indexes, instead using linked nodes.
 
-
-
-
+@author Zach Jessup
+@date 10/30/26
 */
 
 public class IUSingleLinkedList<T> implements IndexedUnsortedList<T> {

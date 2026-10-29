@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  * NOTE: One example test is given for each interface method using a new list to
  * get you started.
  * 
- * @author mvail, mhthomas, awinters
+ * @author Zach Jessup
  */
 @SuppressWarnings("deprecated")
 public class ListTester {
@@ -265,6 +265,18 @@ public class ListTester {
 	}
 	private Scenario<Integer> A_removeA_emptyList = () -> A_removeA_emptyList();
 
+	/** Scenario: [A] -> IterRemove(A) -> [] 
+	 * @return [] after iterRemove(A)
+	 */
+	private IndexedUnsortedList<Integer> A_iterRemoveA_emptyList() {
+		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
+		list.iterator().hasNext();
+		list.iterator().next();
+		list.iterator().remove();
+		return list;
+	}
+	private Scenario<Integer> A_iterRemoveA_emptyList = () -> A_iterRemoveA_emptyList();
+
 	/** Scenario: [A] -> set(0,B) -> [B] 
 	 * @return [B] after set(0,B)
 	 */
@@ -326,6 +338,32 @@ public class ListTester {
 	}
 	private Scenario<Integer> AB_removeB_A = () -> AB_removeB_A();
 
+	/** Scenario: [A,B] -> IterRemove(B) -> [A] 
+	 * @return [A] after iterRemove(B)
+	 */
+	private IndexedUnsortedList<Integer> AB_iterRemoveB_A() {
+		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
+		list.iterator().hasNext();
+		list.iterator().next();
+		list.iterator().hasNext();
+		list.iterator().next();
+		list.iterator().remove();
+		return list;
+	}
+	private Scenario<Integer> AB_iterRemoveB_A = () -> AB_iterRemoveB_A();
+
+	/** Scenario: [A,B] -> IterRemove(A) -> [B] 
+	 * @return [B] after iterRemove(A)
+	 */
+	private IndexedUnsortedList<Integer> AB_iterRemoveA_B() {
+		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
+		list.iterator().hasNext();
+		list.iterator().next();
+		list.iterator().remove();
+		return list;
+	}
+	private Scenario<Integer> AB_iterRemoveA_B = () -> AB_iterRemoveA_B();
+
 	/** Scenario: [A,B] -> addToRear(C) -> [A,B,C] 
 	 * @return [A,B,C] after addToRear(C)
 	 */
@@ -336,7 +374,27 @@ public class ListTester {
 	}
 	private Scenario<Integer> AB_addToRearC_ABC = () -> AB_addToRearC_ABC();
 
-	/** Scenario: [A,B] -> remove(C) -> [A,B] 
+	/** Scenario: [A,B,C] -> removeFirst() -> [B,C] 
+	 * @return [B,C] after removeFirst()
+	 */
+	private IndexedUnsortedList<Integer> ABC_removeFirst_BC() {
+		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
+		list.removeFirst();
+		return list;
+	}
+	private Scenario<Integer> ABC_removeFirst_BC = () -> ABC_removeFirst_BC();
+
+	/** Scenario: [A,B,C] -> removeLast() -> [A,B] 
+	 * @return [A,B] after removeLast()
+	 */
+	private IndexedUnsortedList<Integer> ABC_removeLast_AB() {
+		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
+		list.removeLast();
+		return list;
+	}
+	private Scenario<Integer> ABC_removeLast_AB = () -> ABC_removeLast_AB();
+	
+	/** Scenario: [A,B,C] -> remove(C) -> [A,B] 
 	 * @return [A,B] after remove(C)
 	 */
 	private IndexedUnsortedList<Integer> ABC_removeC_AB() {
@@ -345,6 +403,70 @@ public class ListTester {
 		return list;
 	}
 	private Scenario<Integer> ABC_removeC_AB = () -> ABC_removeC_AB();
+
+	/** Scenario: [A,B,C] -> remove(B) -> [A,C] 
+	 * @return [A,C] after remove(B)
+	 */
+	private IndexedUnsortedList<Integer> ABC_removeB_AC() {
+		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
+		list.remove(ELEMENT_B);
+		return list;
+	}
+	private Scenario<Integer> ABC_removeB_AC = () -> ABC_removeB_AC();
+
+	/** Scenario: [A,B,C] -> remove(A) -> [B,C] 
+	 * @return [B,C] after remove(A)
+	 */
+	private IndexedUnsortedList<Integer> ABC_removeA_BC() {
+		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
+		list.remove(ELEMENT_A);
+		return list;
+	}
+	private Scenario<Integer> ABC_removeA_BC = () -> ABC_removeA_BC();
+
+	/** Scenario: [A,B,C] -> remove(2) -> [A,B] 
+	 * @return [A,B] after remove(2)
+	 */
+	private IndexedUnsortedList<Integer> ABC_remove2_AB() {
+		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
+		list.remove(2);
+		return list;
+	}
+	private Scenario<Integer> ABC_remove2_AB = () -> ABC_remove2_AB();
+
+	/** Scenario: [A,B,C] -> remove(1) -> [A,C] 
+	 * @return [A,C] after remove(1)
+	 */
+	private IndexedUnsortedList<Integer> ABC_remove1_AC() {
+		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
+		list.remove(1);
+		return list;
+	}
+	private Scenario<Integer> ABC_remove1_AC = () -> ABC_remove1_AC();
+
+	/** Scenario: [A,B,C] -> remove(0) -> [B,C] 
+	 * @return [B,C] after remove(0)
+	 */
+	private IndexedUnsortedList<Integer> ABC_remove0_BC() {
+		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
+		list.remove(0);
+		return list;
+	}
+	private Scenario<Integer> ABC_remove0_BC = () -> ABC_remove0_BC();
+
+	/** Scenario: [A,B,C] -> IterRemove(B) -> [A,C] 
+	 * @return [A,C] after iterRemove(B)
+	 */
+	private IndexedUnsortedList<Integer> ABC_iterRemoveB_AC() {
+		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
+		list.iterator().hasNext();
+		list.iterator().next();
+		list.iterator().hasNext();
+		list.iterator().next();
+		list.iterator().remove();
+		return list;
+	}
+	private Scenario<Integer> ABC_iterRemoveB_AC = () -> ABC_iterRemoveB_AC();
 
 	/** Scenario: [A,B,C] -> set(2,D) -> [A,B,D] 
 	 * @return [A,B,D] after set(2,D)
@@ -355,6 +477,26 @@ public class ListTester {
 		return list;
 	}
 	private Scenario<Integer> ABC_set2D_ABD = () -> ABC_set2D_ABD();
+
+	/** Scenario: [A,B,C] -> set(1,D) -> [A,D,C] 
+	 * @return [A,D,C] after set(1,D)
+	 */
+	private IndexedUnsortedList<Integer> ABC_set1D_ADC() {
+		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
+		list.set(1,ELEMENT_D);
+		return list;
+	}
+	private Scenario<Integer> ABC_set1D_ADC = () -> ABC_set1D_ADC();
+
+	/** Scenario: [A,B,C] -> set(0,D) -> [D,B,C] 
+	 * @return [A,D,C] after set(0,D)
+	 */
+	private IndexedUnsortedList<Integer> ABC_set0D_DBC() {
+		IndexedUnsortedList<Integer> list = AB_addToRearC_ABC(); 
+		list.set(0,ELEMENT_D);
+		return list;
+	}
+	private Scenario<Integer> ABC_set0D_DBC = () -> ABC_set0D_DBC();
 
 
 	/////////////////////////////////
