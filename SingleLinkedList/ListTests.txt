@@ -1561,13 +1561,218 @@ Tests:
     toString returns "[A, B, D]"
 44)A_IterRemoveA_empty
   Tests:
+    addToFront(A) throws no Exception
+    addToRear(A) throws no Exception
+    addAfter(A, B) throws NoSuchElementException
+    add(A) throws no Exception
+    add(-1, A) throws IndexOutOfBoundsException
+    add(0, A) throws no Exception
+    add(1, A) throws IndexOutOfBoundsException
+    removeFirst() throws NoSuchElementException
+    removeLast() throws NoSuchElementException
+    remove(A) throws NoSuchElementException
+    remove(-1) throws IndexOutOfBoundsException
+    remove(0) throws IndexOutOfBoundsException
+    set(-1, A) throws IndexOutOfBoundsException
+    set(0, A) throws IndexOutOfBoundsException
+    get(-1) throws IndexOutOfBoundsException
+    get(0) throws IndexOutOfBoundsException
+    indexOf(A) returns -1
+    first() throws NoSuchElementException
+    last() throws NoSuchElementException
+    contains(A) returns false
+    isEmpty() returns true
+    size() returns 0
+    iterator() returns an Iterator reference
+    listIterator() throws UnsupportedOperationException
+    listIterator(0) throws UnsupportedOperationException
+    toString returns "[]"
 45)AB_IterRemoveA_B
   Tests:
+    addToFront(A) throws no Exception
+    addToRear(A) throws no Exception
+    addAfter(B, A) throws no Exception
+    add(A) throws no Exception
+    add(-1, A) throws IndexOutOfBoundsException
+    add(0, A) throws no Exception
+    add(1, A) throws no Exception
+    add(2, A) throws IndexOutOfBoundsException
+    removeFirst() returns B
+    removeLast() returns B
+    remove(B) returns B
+    remove(-1) throws IndexOutOfBoundsException
+    remove(0) returns B
+    set(-1, B) throws IndexOutOfBoundsException
+    set(0, B) returns B
+    get(-1) throws IndexOutOfBoundsException
+    get(0) returns B
+    indexOf(B) returns 0
+    first() returns B
+    last() returns B
+    contains(B) returns true
+    isEmpty() returns false
+    size() returns 1
+    iterator() returns an Iterator reference
+    listIterator() throws UnsupportedOperationException
+    listIterator(0) throws UnsupportedOperationException
+    toString returns "[B]"
 46)AB_IterRemoveB_A
   Tests:
+    addToFront(A) throws no Exception
+    addToRear(A) throws no Exception
+    addAfter(A, B) throws no Exception
+    add(A) throws no Exception
+    add(-1, A) throws IndexOutOfBoundsException
+    add(0, A) throws no Exception
+    add(1, A) throws no Exception
+    removeFirst() returns A
+    removeLast() returns A
+    remove(A) returns A
+    remove(-1) throws IndexOutOfBoundsException
+    remove(0) returns A
+    set(-1, A) throws IndexOutOfBoundsException
+    set(0, A) returns A
+    get(-1) throws IndexOutOfBoundsException
+    get(0) returns A
+    indexOf(A) returns 0
+    first() returns A
+    last() returns A
+    contains(A) returns true
+    isEmpty() returns false
+    size() returns 1
+    iterator() returns an Iterator reference
+    listIterator() throws UnsupportedOperationException
+    listIterator(0) throws UnsupportedOperationException
+    toString returns "[A]"
 47)ABC_IterRemoveA_BC
   Tests:
+    addToFront(D) throws no Exceptions
+    addToRear(D) throws no Exceptions
+    addAfter(D, A) throws NoSuchElementException
+    addAfter(D, C) throws no Exceptions
+    addAfter(D, B) throws no Exceptions
+    add(D) throws no Exception
+    add(-1, D) throws IndexOutOfBoundsException
+    add(0, D) throws no Exception
+    add(1, D) throws no Exception
+    add(2, D) throws no Exception
+    add(3, D) throws IndexOutOfBoundsException
+    removeFirst() returns B
+    removeLast() returns C
+    remove(A) throws NoSuchElementException
+    remove(B) returns B
+    remove(C) returns C
+    remove(-1) throws IndexOutOfBoundsException
+    remove(0) returns B
+    remove(1) returns C
+    remove(2) throws IndexOutOfBoundsException
+    set(-1, D) throws IndexOutOfBoundsException
+    set(0, D) throws no Exception
+    set(1, D) throws no Exception
+    set(2, D) throws IndexOutOfBoundsException
+    get(-1) throws IndexOutOfBoundsException
+    get(0) returns B
+    get(1) returns C
+    get(2) throws IndexOutOfBoundsException
+    indexOf(A) returns -1
+    indexOf(B) returns 0
+    indexOf(C) returns 1
+    first() returns B
+    last() returns C
+    contains(A) returns false
+    contains(B) returns true
+    contains(C) returns true
+    isEmpty() returns false
+    size() returns 2
+    iterator() returns an Iterator reference
+    listIterator() throws UnsupportedOperationException
+    listIterator(0) throws UnsupportedOperationException
+    toString() returns "[B, C]"
 48)ABC_IterRemoveB_AC
   Tests:
+    addToFront(D) throws no Exceptions
+    addToRear(D) throws no Exceptions
+    addAfter(D, A) throws no Exceptions
+    addAfter(D, C) throws no Exceptions
+    addAfter(D, B) throws NoSuchElementException
+    add(D) throws no Exception
+    add(-1, D) throws IndexOutOfBoundsException
+    add(0, D) throws no Exception
+    add(1, D) throws no Exception
+    add(2, D) throws no Exception
+    add(3, D) throws IndexOutOfBoundsException
+    removeFirst() returns A
+    removeLast() returns C
+    remove(A) returns A
+    remove(B) throws NoSuchElementException
+    remove(C) returns C
+    remove(-1) throws IndexOutOfBoundsException
+    remove(0) returns A
+    remove(1) returns C
+    remove(2) throws IndexOutOfBoundsException
+    set(-1, D) throws IndexOutOfBoundsException
+    set(0, D) throws no Exception
+    set(1, D) throws no Exception
+    set(2, D) throws IndexOutOfBoundsException
+    get(-1) throws IndexOutOfBoundsException
+    get(0) returns A
+    get(1) returns C
+    get(2) throws IndexOutOfBoundsException
+    indexOf(A) returns 0
+    indexOf(B) returns -1
+    indexOf(C) returns 1
+    first() returns A
+    last() returns C
+    contains(A) returns true
+    contains(B) returns false
+    contains(C) returns true
+    isEmpty() returns false
+    size() returns 2
+    iterator() returns an Iterator reference
+    listIterator() throws UnsupportedOperationException
+    listIterator(0) throws UnsupportedOperationException
+    toString() returns "[A, C]"
 49)ABC_IterRemoveC_AB
   Tests:
+    addToFront(D) throws no Exceptions
+    addToRear(D) throws no Exceptions
+    addAfter(D, A) throws no Exceptions
+    addAfter(D, C) throws NoSuchElementException
+    addAfter(D, B) throws no Exceptions
+    add(D) throws no Exception
+    add(-1, D) throws IndexOutOfBoundsException
+    add(0, D) throws no Exception
+    add(1, D) throws no Exception
+    add(2, D) throws no Exception
+    add(3, D) throws IndexOutOfBoundsException
+    removeFirst() returns A
+    removeLast() returns B
+    remove(A) returns A
+    remove(B) returns B
+    remove(C) throws NoSuchElementException
+    remove(-1) throws IndexOutOfBoundsException
+    remove(0) returns A
+    remove(1) returns B
+    remove(2) throws IndexOutOfBoundsException
+    set(-1, D) throws IndexOutOfBoundsException
+    set(0, D) throws no Exception
+    set(1, D) throws no Exception
+    set(2, D) throws IndexOutOfBoundsException
+    get(-1) throws IndexOutOfBoundsException
+    get(0) returns A
+    get(1) returns B
+    get(2) throws IndexOutOfBoundsException
+    indexOf(A) returns 0
+    indexOf(B) returns 1
+    indexOf(C) returns -1
+    first() returns A
+    last() returns B
+    contains(A) returns true
+    contains(B) returns true
+    contains(C) returns false
+    isEmpty() returns false
+    size() returns 2
+    iterator() returns an Iterator reference
+    listIterator() throws UnsupportedOperationException
+    listIterator(0) throws UnsupportedOperationException
+    toString() returns "[A, B]"
